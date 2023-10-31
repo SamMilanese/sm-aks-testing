@@ -1,7 +1,7 @@
 resource "kubernetes_namespace_v1" "ns" {
 
   metadata {
-    name = var.kube_namespace
+    name = "tfc-agent-ns"
 
     annotations = {
       name = "This blog post is amazing"
