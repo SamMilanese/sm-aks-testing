@@ -15,3 +15,7 @@ variable "tenantID" {
  variable "password" {
    description = "Azure Kubernetes Service Cluster password"
  }
+
+variable "tfc_agent_token" {
+  description = "Terraform Cloud agent token. (mark as sensitive) (TFC Organization Settings >> Agents)"
+}
