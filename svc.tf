@@ -5,7 +5,7 @@ resource "kubernetes_service_v1" "svc" {
   }
   spec {
     selector = {
-      tier = kubernetes_deployment_v1.deploy.spec.0.template.0.metadata.0.labels.tier
+      tier = "frontend"
     }
     port {
       port        = 4444
