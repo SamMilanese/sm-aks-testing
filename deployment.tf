@@ -26,8 +26,21 @@ resource "kubernetes_deployment_v1" "deploy" {
 
       spec {
         container {
-          image = "nginx:1.23.3"
-          name  = "nginx"
+          image = "hashicorp/tfc-agent:latest"
+          name  = "tfc-agent"
+
+          env {
+            name  = "TFC_AGENT_TOKEN"
+            value = var.tfc_agent_token
+          }
+          env {
+            name  = "TFC_AGENT_NAME"
+            value = "SM_Test_Agent_1"
+          }
+          env {
+            name  = "TFC_AGENT_SINGLE"
+            value = "true"
+          }
 
           resources {
             limits = {
