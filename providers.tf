@@ -4,8 +4,6 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.41.0"
-      subscription_id = var.subscriptionID
-      tenant_id = var.tenantID
     }
     azuread = {
       version = ">= 2.33.0"
@@ -18,6 +16,8 @@ terraform {
 
 provider "azurerm" {
   features {}
+  subscription_id = var.subscriptionID
+  tenant_id = var.tenantID
 }
 
 provider "kubernetes" {
