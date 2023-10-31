@@ -53,17 +53,6 @@ resource "kubernetes_deployment_v1" "deploy" {
             }
           }
 
-          liveness_probe {
-            http_get {
-              path = "/"
-              port = 8080
-
-              http_header {
-                name  = "X-Custom-Header"
-                value = "GreatBlogArticle"
-              }
-            }
-
             initial_delay_seconds = 2
             period_seconds        = 2
           }
