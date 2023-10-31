@@ -1,0 +1,27 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.40.0"
+    }
+  }
+}
+
+provider "azurerm" {
+   subscription_id = var.subscriptionID
+    tenant_id = var.tenantID
+   features {}
+}
+
+module "aks_example_named_cluster" {
+  source                               = "Azure/aks/azurerm"
+  version                              = "6.2.0"
+  prefix                               = "test"
+  resource_group_name                  = "aks-test-rg"
+  admin_username                       = "testaksadmin"
+  azure_policy_enabled                 = true
+  cluster_log_analytics_workspace_name = "test-aks-law"
+  cluster_name                         = "sm-test-aks"
+  location                             = "uksouth"
+  log_retention_in_days                = "365"
+}
