@@ -29,10 +29,6 @@ resource "kubernetes_pod_v1" "pod_tfc_agent" {
       port {
         container_port = 8080
       }
-
-        initial_delay_seconds = 2
-        period_seconds        = 2
-      }
     }
   }
 }
