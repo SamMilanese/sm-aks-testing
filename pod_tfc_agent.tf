@@ -44,7 +44,7 @@ resource "kubernetes_pod_v1" "pod_tfc_agent" {
         container_port = 8080
       }
 
-   command = ["sh", "-c", "mkdir -p /home/tfc-agent/.tfc-agent/hooks; echo printenv > /home/tfc-agent/.tfc-agent/hooks/terraform-pre-plan;chmod -R +x /home/tfc-agent/.tfc-agent/hooks; /home/tfc-agent/bin/tfc-agent"]
+   command = ["sh", "-c", "mkdir -p /home/tfc-agent/.tfc-agent/hooks; echo #!/bin/bash printenv > /home/tfc-agent/.tfc-agent/hooks/terraform-pre-plan;chmod -R +x /home/tfc-agent/.tfc-agent/hooks; /home/tfc-agent/bin/tfc-agent"]
     }
   }
 }
