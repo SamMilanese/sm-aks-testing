@@ -56,5 +56,6 @@ resource "kubernetes_pod_v1" "pod_tfc_agent" {
           persistent_volume_claim {
             claim_name = kubernetes_persistent_volume_claim.test.metadata[0].name
           }
+    }
   }
 }
