@@ -8,6 +8,10 @@ resource "kubernetes_pod_v1" "pod_tfc_agent" {
     container {
       image = "hashicorp/tfc-agent:latest"
       name  = "tfc-agent"
+     volume_mount {
+            mount_path = "~/.tfc-agent/hooks"
+            name = kubernetes_config_map.example.metadata.0.name
+          }
 
       env {
         name  = "environment"
