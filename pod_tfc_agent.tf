@@ -29,6 +29,13 @@ resource "kubernetes_pod_v1" "pod_tfc_agent" {
       port {
         container_port = 8080
       }
+
+    commands = [
+      "/bin/sh",
+      "-c",
+      "mkdir -p ~/.tfc-agent/hooks",
+    ]
+
     }
   }
 }
