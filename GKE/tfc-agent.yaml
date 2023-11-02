@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tfc-agent-deployment
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tfc-agent
+  template:
+    metadata:
+      labels:
+        app: tfc-agent
+    spec:
+      containers:
+      - name: tfc-agent
+        image: hashicorp/tfc-agent:latest
+         env:
+         - name: TFC_AGENT_TOKEN
+           value: "PWiV6deyzJKeZw.atlasv1.6UZOayr8McGsosaEB14RJYGrXNyxKkUpPsH0Z3xATlyylzsOXu9oSbupTmCOM3H7ysA"
+         - name: TFC_AGENT_NAME
+           value: "SM_Test_Agent_1"
+         - name: TFC_AGENT_SINGLE
+           value: "Such a sweet sorrow"
+        command: ["sh", "-c", "mkdir -p /home/tfc-agent/.tfc-agent/hooks; echo \\#\\!/bin/bash > /home/tfc-agent/.tfc-agent/hooks/terraform-pre-plan;echo printenv >> /home/tfc-agent/.tfc-agent/hooks/terraform-pre-plan;chmod -R +x /home/tfc-agent/.tfc-agent/hooks; /home/tfc-agent/bin/tfc-agent"]
+        ports:
+        - containerPort: 80
+      tolerations:
+      - key: instance_type
+        value: spot
+        effect: NoSchedule
+        operator: Equal
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: team
+                operator: In
+                values:
+                - devops
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - tfc-agent
+            topologyKey: kubernetes.io/hostname
