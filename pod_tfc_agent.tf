@@ -1,18 +1,3 @@
-resource "kubernetes_persistent_volume_claim" "test" {
-  wait_until_bound = false
-  metadata {
-    name = "test"
-  }
-  spec {
-    access_modes = ["ReadWriteOnce"]
-    resources {
-      requests = {
-        storage = "1Gi"
-      }
-    }
-  }
-}
-
 resource "kubernetes_pod_v1" "pod_tfc_agent" {
   metadata {
     name      = "tfc-agent"
