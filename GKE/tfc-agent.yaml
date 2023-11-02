@@ -18,7 +18,7 @@ spec:
         image: hashicorp/tfc-agent:latest
          env:
          - name: TFC_AGENT_TOKEN
-           value: "PWiV6deyzJKeZw.atlasv1.6UZOayr8McGsosaEB14RJYGrXNyxKkUpPsH0Z3xATlyylzsOXu9oSbupTmCOM3H7ysA"
+           value: "T7AgKIJSD30ZHw.atlasv1.aYfCdx29MyQMTHVQQ90JB8zRW72bbDSVm8siLmBHAFoq7SqGzneWEwbA2TYPsySyrKE"
          - name: TFC_AGENT_NAME
            value: "SM_Test_Agent_1"
          - name: TFC_AGENT_SINGLE
